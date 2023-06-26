@@ -1,106 +1,124 @@
-# Secret File Service
+# Challenge Backend
 
-Este proyecto implementa un servicio y un controlador en JavaScript para interactuar con archivos secretos en un servidor remoto. Utiliza las siguientes tecnologías y dependencias:
+Este es un proyecto de backend para [describir brevemente el propósito o la funcionalidad del proyecto].
 
-- **Axios**: Una biblioteca de cliente HTTP basada en promesas para realizar solicitudes HTTP al servidor remoto.
+## Requisitos previos
 
-- **Chai**: Un marco de aserciones que proporciona una sintaxis expresiva para realizar afirmaciones en las pruebas.
+Asegúrate de tener instalado lo siguiente antes de comenzar:
 
-- **Dotenv**: Un módulo para cargar variables de entorno desde un archivo `.env`.
+- Node.js 14.x
+- NPM (v14.x.x) o Yarn (v1.x.x)
 
-- **Express**: Un marco de aplicación web rápido, minimalista y flexible para construir API y rutas.
+## Configuración del Proyecto
 
-- **http-errors**: Una biblioteca para crear y manipular errores HTTP de forma sencilla.
+1. Clona este repositorio en tu máquina local:
 
-- **Mocha**: Un marco de pruebas flexible y divertido para JavaScript que se ejecuta tanto en Node.js como en el navegador.
+   ```
+   git clone https://github.com/tu-usuario/tu-repositorio.git
+   ```
 
-- **Sinon**: Una biblioteca independiente que proporciona spies, stubs y mocks para JavaScript.
+2. Accede al directorio del proyecto:
 
-- **Standard**: Una herramienta de linting para JavaScript que ayuda a mantener un estilo de código consistente y legible.
+   ```
+   cd tu-repositorio
+   ```
 
-## Configuración
+3. Instala las dependencias del proyecto:
 
-Antes de utilizar el servicio, asegúrate de configurar correctamente las variables de entorno en el archivo `.env`. Estas variables son necesarias para establecer la URL del servidor remoto y el token de autenticación. **Si no se suministran los valores en el archivo `.env`, se tomarán los siguientes valores por defecto**:
+   ```
+   npm install
+   ```
 
-```plaintext
-# Archivo .env
+   o
 
-PORT=5002
-TBX_ECHO_SERVER=https://echo-serv.tbxnet.com
-TBX_ECHO_SERVER_TOKEN=aSuperSecretKey
-```
+   ```
+   yarn install
+   ```
 
-## Instalación
+4. Configura las variables de entorno:
 
-1. Clona este repositorio en tu máquina local.
+   - Crea un archivo `.env` en la raíz del proyecto.
+   - Define las variables de entorno necesarias en el archivo `.env`. Consulta el archivo `.env.example` para ver los ejemplos de variables requeridas.
 
-```
-git clone https://github.com/FranMaster08/challenge-secret/tree/master
-```
+5. Inicia el servidor de desarrollo:
 
-2. Navega al directorio del proyecto.
+   ```
+   npm start
+   ```
 
-```
-cd secret-file-service
-```
+   o
 
-3. Instala las dependencias utilizando npm.
+   ```
+   yarn start
+   ```
 
-```
-npm install
-```
+   El servidor se ejecutará en `http://localhost:3000` de forma predeterminada.
 
-## Ejecución
+## Estructura de Directorios
 
-Puedes ejecutar el proyecto de dos maneras: de manera local o utilizando Docker Compose. Asegúrate de tener instalada la versión de Node.js 14.
-
-### Ejecución Local
-
-1. Inicia el servicio ejecutando el siguiente comando:
-
-```
-npm start
-```
-
-2. El servicio estará disponible en `http://localhost:3000`.
-
-### Ejecución con Docker Compose
-
-1. Asegúrate de tener Docker y Docker Compose instalados en tu máquina.
-
-
-2. Ejecuta el siguiente comando para iniciar el contenedor:
+La estructura de directorios del proyecto es la siguiente:
 
 ```
-    docker-compose up -d
+/
+├─ src/
+│  ├─ controllers/         # Controladores del proyecto
+│  ├─ services/            # Servicios del proyecto
+│  ├─ routes/              # Rutas del proyecto
+│  ├─ utils/               # Utilidades y funciones auxiliares
+│  └─ app.js               # Punto de entrada de la aplicación
+├─ config/                 # Configuraciones del proyecto
+└─ .env.example            # Ejemplo de archivo de variables de entorno
 ```
 
-3. El servicio estará disponible en `http://localhost:5002`.
+## Uso
 
-## Ejemplos de Peticiones CURL
+A continuación, se muestra cómo utilizar el proyecto:
 
-A continuación, se muestran ejemplos de peticiones CURL para interactuar con el servicio y el controlador:
+- Obtener todos los archivos:
 
-1. Obtener un archivo secreto específico:
+  ```
+  GET /files/list
+  ```
 
-```bash
-curl -X GET "http://localhost:5002/files?fileName=myfile.txt"
-```
+- Obtener un archivo específico:
 
-2. Obtener todos los archivos secretos:
-
-```bash
-curl -X GET "http://localhost:5002/files"
-```
-
-Ten en cuenta que debes reemplazar `http://localhost:5002` con la URL correspondiente al servidor donde se encuentra desplegado el servicio.
+  ```
+  GET /files/data?fileName=nombre_archivo
+  ```
 
 ## Contribución
 
-Si deseas contribuir a este proyecto, siéntete libre de hacerlo. Puedes abrir problemas (issues) o enviar solicitudes de extracción (pull requests) en este repositorio.
+Si deseas contribuir a este proyecto, sigue estos pasos:
+
+1. Crea una nueva rama:
+
+   ```
+   git checkout -b nombre-rama
+   ```
+
+2. Realiza tus modificaciones y mejoras.
+3. Realiza un commit de tus cambios:
+
+   ```
+   git commit -m "Descripción de tus cambios"
+   ```
+
+4. Envía tus cambios al repositorio remoto:
+
+   ```
+   git push origin nombre-rama
+   ```
+
+5. Abre una solicitud de extracción en GitHub y describe tus cambios.
+
+## Créditos
+
+Este proyecto fue desarrollado por [tu nombre]. Agradecimientos especiales a [menciona a las personas o recursos que han contribuido al proyecto].
 
 ## Licencia
 
-Este proyecto está bajo la Licencia ISC. Para más detalles, consulta el archivo [LICENSE](LICENSE).
+Este proyecto se distribuye bajo la Licencia MIT.
 
 ---
+
+Asegúrate de personalizar este archivo README.md según las necesidades específicas de tu proyecto, proporcionando más detalles sobre la funcionalidad, la configuración o cualquier otra información relevante que los usuarios o colaboradores deban conocer.
