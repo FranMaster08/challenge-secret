@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Table } from "react-bootstrap";
+import { Table, Form, Button } from "react-bootstrap";
 import axios from "axios";
 
 const TablaFiles = () => {
   const [data, setData] = useState([]);
+  const [searchFileName, setSearchFileName] = useState("");
 
   useEffect(() => {
     fetchData();
@@ -11,15 +12,40 @@ const TablaFiles = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/file/list");
-      setData(response.data);
+      const response = await axios.get("http://localhost:3000/files/data");
+      setData([...response.data]);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
 
+  const handleSearch = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.get(
+        `http://localhost:3000/files/data?fileName=${searchFileName}`
+      );
+      setData([...response.data]);
+    } catch (error) {
+      console.error("Error searching data:", error);
+    }
+  };
+
   return (
     <div>
+      <Form onSubmit={handleSearch}>
+        <Form.Group>
+          <Form.Control
+            type="text"
+            placeholder="Search by filename"
+            value={searchFileName}
+            onChange={(e) => setSearchFileName(e.target.value)}
+          />
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Search
+        </Button>
+      </Form>
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -31,7 +57,7 @@ const TablaFiles = () => {
         </thead>
         <tbody>
           {data.map((item, index) =>
-            item.line.map((line, lineIndex) => (
+            item.line?.map((line, lineIndex) => (
               <tr key={`${index}-${lineIndex}`}>
                 <td>{item.file}</td>
                 <td>{line.text}</td>
